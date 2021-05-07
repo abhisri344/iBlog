@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+AddBlog
+{% endblock  %}
+{% block body %}
+<style type="text/css">
+body {
+    background-image: url({% static 'blog/images/back2.jpg'%});
+    {% comment %} height:; {% endcomment %}
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:1450px 660px;
+    font-family: 'Droid Serif', serif;
+    {% comment %} opacity:0.1; {% endcomment %}
+}
+</style>
+<body>
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="table-responsive">
+    <table>
+    {% for i in f %}
+    <tr>
+    <td><h3>{{i.label_tag}}</h3></td>
+    <td>{{i}}</td>
+    <td>{{i.help_text}}</td>
+    <td>{{i.errors}}</td>
+
+    </tr>
+    {% endfor %}
+    
+    </table>
+    <div class="container">
+    <input type="submit" value="Add">
+    </div>
+</div>
+</body>
+
+{% endblock  %}
